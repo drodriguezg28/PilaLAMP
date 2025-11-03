@@ -1,17 +1,17 @@
-# PilaLAMP
+# 🗄️ PilaLAMP
 Este documento recoge la práctica de montaje de una infraestructura en dos niveles, la cual contiene una maquina Apache y otra con MariaDB
 
 ---
 
-## Configuración del entorno con Vagrant
+## Configuración con Vagrant
 
-Se usa Vagrant con un Box oficial de Debian 12 para desplegar dos máquinas virtuales:
+Se usa Vagrant con un Box de Debian 12 para desplegar dos máquinas:
 - Máquinas:
-  - `MiNombreApache` (servidor web Apache)
-  - `MiNombreMysql` (servidor MariaDB)
+  - `DanielRodApache` (servidor web Apache)
+  - `DanielRodSQL` (servidor MariaDB)
 
 - La máquina Apache tiene acceso a Internet por NAT.
-- La máquina MySQL no tiene acceso a Internet.
+- La máquina SQL no tiene acceso a Internet.
 - Acceso a la aplicación mediante port forwarding.
 
 ### Vagrantfile
@@ -37,8 +37,6 @@ Vagrant.configure("2") do |config|
   end
 end
 ```
-
-Lo primero que se deberá hacer es hacer un `vagrant up` del fichero ***Vagrantfile***
 
 ---
 
@@ -161,7 +159,8 @@ echo "Configuración de MariaDB y de la base de datos completado."
 
 
 ## Acceso a la Aplicación Web
-<http://localhost:8080/>
+1. Hacer un `vagrant up` del fichero ***Vagrantfile*** para desplegar y aprovisionar la maquina.
+2. Introducir en tu nvegador la dirección <http://localhost:8080/> para acceder a la aplicación a través del puerto 8080.
 
 ## Capturas de pantalla
 
