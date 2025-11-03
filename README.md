@@ -3,7 +3,7 @@
 
 Lo primero que se deberá hacer es hacer un `vagrant up` del siguiente fichero ***vagrant.file***:
 
-```
+```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bookworm64"
 
