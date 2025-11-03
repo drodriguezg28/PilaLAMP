@@ -77,7 +77,7 @@ sudo a2dissite 000-default.conf
 sudo systemctl reload apache2
 echo "Sitio web habilitado."
 ```
-Este script realiza lo siguiente:
+**Este script realiza lo siguiente:**
 
 - Actualiza los repositorios.
 - Instala Apache2 y PHP.
@@ -143,7 +143,7 @@ sudo route del
 echo "Configuración de MariaDB y de la base de datos completado."
 ```
 
-Este script realiza:
+**Este script realiza:**
 - Actualiza repositorios.
 - Instala MariaDB.
 - Modifica la configuración para permitir conexiones remotas.
