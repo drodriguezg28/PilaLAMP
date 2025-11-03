@@ -90,7 +90,7 @@ Este script realiza lo siguiente:
 
 - `apt update`: Actualiza los paquetes.
 - `apt install apache2 php ...`: Instala Apache, PHP y sus módulos.
-- `git clone`: Descarga el código fuente desde GitHub.
+- `git clone`: Descarga el código de PHP desde GitHub.
 - `cp -r`: Copia los archivos de la aplicación al directorio web de Apache.
 - `sed -i`: Modifica el archivo de configuración PHP para conectar con el servidor MySQL remoto.
 - `a2ensite` y `a2dissite`: Habilita el nuevo sitio y deshabilita el sitio por defecto.
@@ -144,35 +144,36 @@ echo "Configuración de MariaDB y de la base de datos completado."
 ```
 
 Este script realiza:
-
 - Actualiza repositorios.
 - Instala MariaDB.
-- Modifica configuración para permitir conexiones remotas.
-- Instala Git y clona el repositorio que contiene el script SQL de la base de datos.
-- Crea la base de datos `interfaz` y un usuario `daniel` con permisos específicos para IPs de la red privada.
+- Modifica la configuración para permitir conexiones remotas.
+- Instala Git y clona el repositorio que contiene el script SQL.
+- Crea la base de datos `interfaz` y un usuario `daniel`, en este caso solo con acceso desde la red interna.
 - Importa el script SQL para crear tablas y datos iniciales.
 - Deshabilita el acceso a Internet de esta máquina.
 
 **Explicación de órdenes:**
--  `apt update && apt install mariadb-server`: Instalación de MariaDB.
-- `systemctl start/enable mariadb`: Inicia y habilita el servicio.
+- `apt install mariadb-server`: Instalación de MariaDB.
 - `sed -i`: Cambia `bind-address` para aceptar conexiones remotas.
-- `git clone`: Obtiene scripts SQL.
-- Sentencias SQL en `mysql -e`: Crea base de datos, usuario y asigna permisos para la red privada.
-- `mysql < archivo.sql`: Importa la estructura y datos iniciales de la base de datos.
-- `route del default`: Elimina la ruta de salida para inhabilitar acceso externo via NAT.
+- `git clone`: Obtiene el script SQL del repositorio de GitHub.
+- Sentencias SQL en `mysql -e`: Crea base de datos, usuario y asigna permisos.
+- `interfaz < database.sql`: Importa los datos del script database.sql a la base de datos interfaz.
+- `route del default`: Elimina la gateway para inhabilitar la salida a internet.
 
 
 ## Capturas de pantalla
 
 **Máquina Apache corriendo servidor web y PHP.**
+![Texto alternativo](/assets/images/tux.png)
 **Máquina MySQL con servicio MariaDB activo.**
+![Texto alternativo](/assets/images/tux.png)
 **Navegador mostrando la aplicación operativa vía port forwarding.**
+![Texto alternativo](/assets/images/tux.png)
 
 ---
 
 ## Screencast
-
+[Ver video de la demostración](https://url-del-video.com)
 
 
 ---
