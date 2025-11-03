@@ -3,7 +3,7 @@
 
 Lo primero que se deberá hacer es hacer un `vagrant up` del siguiente fichero ***vagrant.file***:
 
-`
+```
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bookworm64"
 
@@ -23,5 +23,5 @@ Vagrant.configure("2") do |config|
     sql.vm.provision "shell", path: "aprov_sql.sh"
   end
 end
-`
+```
 
