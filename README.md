@@ -1,5 +1,5 @@
 # PilaLAMP
-Este documento recoge la práctica de montaje de una infraestructura en dos niveles
+Este documento recoge la práctica de montaje de una infraestructura en dos niveles, la cual contiene una maquina Apache y otra con MariaDB
 
 ---
 
@@ -89,12 +89,11 @@ echo "Sitio web habilitado."
 **Explicación de comandos:**
 
 - `apt update`: Actualiza los paquetes.
-- `apt install apache2 php ...`: Instala Apache, PHP y sus módulos.
+- `apt install apache2 php libapache2-mod-php php-mysql`: Instala Apache, PHP y sus módulos.
 - `git clone`: Descarga el código de PHP desde GitHub.
 - `cp -r`: Copia los archivos de la aplicación al directorio web de Apache.
 - `sed -i`: Modifica el archivo de configuración PHP para conectar con el servidor MySQL remoto.
-- `a2ensite` y `a2dissite`: Habilita el nuevo sitio y deshabilita el sitio por defecto.
-- `systemctl reload apache2`: Recarga Apache para aplicar la nueva configuración.
+- `a2ensite` y `a2dissite`: Habilita el nuevo sitio y deshabilita el sitio por defecto, respectivamente.
 
 ---
 
@@ -160,6 +159,9 @@ echo "Configuración de MariaDB y de la base de datos completado."
 - `interfaz < database.sql`: Importa los datos del script database.sql a la base de datos interfaz.
 - `route del default`: Elimina la gateway para inhabilitar la salida a internet.
 
+
+## Acceso a la Aplicación Web
+<http://localhost:8080/>
 
 ## Capturas de pantalla
 
