@@ -46,7 +46,7 @@ Lo primero que se deberá hacer es hacer un `vagrant up` del fichero ***Vagrantf
 
 Cada máquina será aprovisionada mediante un script bash que automatiza la instalación y configuración.
 
-### Script de aprovisionamiento Apache (`apache_provision.sh`)
+### Script de aprovisionamiento Apache y PHP (`aprov_apache.sh`)
 ```ruby
 #!/bin/bash
 # Actualización de los repositorios
@@ -77,14 +77,81 @@ sudo a2dissite 000-default.conf
 sudo systemctl reload apache2
 echo "Sitio web habilitado."
 ```
-Este script:
+Este script realiza lo siguiente:
 
-- Actualiza el sistema.
+- Actualiza los repositorios.
 - Instala Apache2 y PHP.
-- Configura la aplicación de gestión de usuarios.
-- Configura el firewall (ufw) para permitir solo el puerto necesario.
-- Otras configuraciones específicas.
+- Instala Git y clona el repositorio con la aplicación.
+- Copia el código php a `/var/www/html/php`.
+- Modifica el archivo `config.php` para crear la configuración entre Apache y MariaDB.
+- Configura un nuevo sitio en Apache para la aplicación.
 
+**Explicación de órdenes:**
+
+- `apt update`: Actualiza la lista de paquetes.
+- `apt install apache2 php ...`: Instala Apache, PHP y módulos necesarios para la aplicación.
+- `git clone`: Descarga el código fuente desde GitHub.
+- `cp -r`: Copia los archivos de la aplicación al directorio web de Apache.
+- `sed -i`: Modifica el archivo de configuración PHP para conectar con el servidor MySQL remoto.
+- `a2ensite` y `a2dissite`: Habilita el nuevo sitio y deshabilita el sitio por defecto.
+- `systemctl reload apache2`: Recarga Apache para aplicar la nueva configuración.
+
+---
+
+### Script para MariaDB (`mysql_provision.sh`)
+
+```ruby
+#!/bin/bash
+
+# Instalar MariaDB
+sudo apt update
+sudo apt install -y mariadb-serverç
+echo "MariaDB se ha instalado correctamente."
+
+# Iniciar, activar y configurar el servicio de MariaDB
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo sed -i "s|bind-address\s*=.*|bind-address = 0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo systemctl restart mariadb
+echo "MariaDB se ha instalado correctamente, se ha configurado y está activo."
+
+
+#Clonar el repositorio para añadir el script de sql
+sudo apt install -y git
+git clone https://github.com/josejuansanchez/iaw-practica-lamp.git
+echo "Repositorio clonado."
+
+
+# Crear base de datos, usuario y asignar permisos
+sudo mysql -u root -e "create database if not exists interfaz;"
+sudo mysql -u root -e "CREATE USER 'daniel'@'192.168.50.%' IDENTIFIED BY '123456789';"
+sudo mysql -u root -e "GRANT update, insert, delete, select ON interfaz.* TO 'daniel'@'192.168.50.%';"
+sudo mysql -u root -e "FLUSH PRIVILEGES;"
+echo "Base de datos y usuario daniel creados con permisos asignados."
+echo "Usuario admin con contraseña '123456789'."
+# Importar el script SQL
+mysql -u root interfaz < iaw-practica-lamp/db/database.sql
+echo "Base de datos importada correctamente."
+
+# Eliminar el repositorio clonado 
+sudo rm -r iaw-practica-lamp
+echo "Restos del repositorio clonado eliminado."
+
+# Inhabilitar la red NAT
+sudo route del
+
+echo "Configuración de MariaDB y de la base de datos completado."
+```
+
+Este script realiza:
+
+- Actualiza repositorios.
+- Instala MariaDB.
+- Modifica configuración para permitir conexiones remotas.
+- Instala Git y clona el repositorio que contiene el script SQL de la base de datos.
+- Crea la base de datos `interfaz` y un usuario `daniel` con permisos específicos para IPs de la red privada.
+- Importa el script SQL para crear tablas y datos iniciales.
+- Deshabilita el acceso a Internet de esta máquina.
 
 
 
