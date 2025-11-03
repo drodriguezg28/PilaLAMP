@@ -14,9 +14,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "debian/bookworm64"
 
-
-  #Configuración del servidor APACHE
-
+  
   config.vm.define "apache" do |apache|
     apache.vm.box = "debian/bookworm64"
     apache.vm.network "private_network", ip:"192.168.50.10", virtualbox__intnet: "red1"
@@ -24,16 +22,17 @@ Vagrant.configure("2") do |config|
     apache.vm.network "forwarded_port", guest: 80, host: 8080
     apache.vm.provision "shell", path: "aprov_apache.sh"
   end
-
-
-  #Configuración del servidor SQL
-
+  
   config.vm.define "sql" do |sql|
     sql.vm.box = "debian/bookworm64"
     sql.vm.network "private_network", ip:"192.168.50.11", virtualbox__intnet: "red1"
     sql.vm.hostname = "DanielRodSQL"
     sql.vm.provision "shell", path: "aprov_sql.sh"
   end
+  
+
+
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -96,4 +95,3 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 end
-
