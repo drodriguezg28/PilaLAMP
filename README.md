@@ -162,19 +162,12 @@ echo "Configuración de MariaDB y de la base de datos completado."
 1. Hacer un `vagrant up` del fichero ***Vagrantfile*** para desplegar y aprovisionar la maquina.
 2. Introducir en tu nvegador la dirección <http://localhost:8080/> para acceder a la aplicación a través del puerto 8080.
 
-## Capturas de pantalla
+## Capturas de pantalla y Screencast
 
-**Máquina Apache corriendo servidor web y PHP.**
-![Texto alternativo](/assets/images/tux.png)
-**Máquina MySQL con servicio MariaDB activo.**
-![Texto alternativo](/assets/images/tux.png)
 **Navegador mostrando la aplicación operativa vía port forwarding.**
-![Texto alternativo](/assets/images/tux.png)
-
----
-
-## Screencast
-[Ver video de la demostración](https://url-del-video.com)
+![Captura Aplicación web](/src/Captura_pantalla.png)
+**Screen cast**
+[Video de demostración](src/Video.mp4)
 
 
 ---
