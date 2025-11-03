@@ -1,4 +1,4 @@
-# 🗄️ PilaLAMP
+# PilaLAMP
 Este documento recoge la práctica de montaje de una infraestructura en dos niveles, la cual contiene una maquina Apache y otra con MariaDB
 
 ---
