@@ -1,6 +1,8 @@
 # PilaLAMP
 Este documento recoge la práctica de montaje de una infraestructura en dos niveles
 
+---
+
 ## Configuración del entorno con Vagrant
 
 Se usa Vagrant con un Box oficial de Debian 12 para desplegar dos máquinas virtuales:
