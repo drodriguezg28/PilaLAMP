@@ -86,10 +86,10 @@ Este script realiza lo siguiente:
 - Modifica el archivo `config.php` para crear la configuración entre Apache y MariaDB.
 - Configura un nuevo sitio en Apache para la aplicación.
 
-**Explicación de órdenes:**
+**Explicación de comandos:**
 
-- `apt update`: Actualiza la lista de paquetes.
-- `apt install apache2 php ...`: Instala Apache, PHP y módulos necesarios para la aplicación.
+- `apt update`: Actualiza los paquetes.
+- `apt install apache2 php ...`: Instala Apache, PHP y sus módulos.
 - `git clone`: Descarga el código fuente desde GitHub.
 - `cp -r`: Copia los archivos de la aplicación al directorio web de Apache.
 - `sed -i`: Modifica el archivo de configuración PHP para conectar con el servidor MySQL remoto.
@@ -153,5 +153,28 @@ Este script realiza:
 - Importa el script SQL para crear tablas y datos iniciales.
 - Deshabilita el acceso a Internet de esta máquina.
 
+**Explicación de órdenes:**
+-  `apt update && apt install mariadb-server`: Instalación de MariaDB.
+- `systemctl start/enable mariadb`: Inicia y habilita el servicio.
+- `sed -i`: Cambia `bind-address` para aceptar conexiones remotas.
+- `git clone`: Obtiene scripts SQL.
+- Sentencias SQL en `mysql -e`: Crea base de datos, usuario y asigna permisos para la red privada.
+- `mysql < archivo.sql`: Importa la estructura y datos iniciales de la base de datos.
+- `route del default`: Elimina la ruta de salida para inhabilitar acceso externo via NAT.
+
+
+## Capturas de pantalla
+
+*Máquina Apache corriendo servidor web y PHP.*
+*Máquina MySQL con servicio MariaDB activo.*
+*Navegador mostrando la aplicación operativa vía port forwarding.*
+
+---
+
+## Screencast
+
+
+
+---
 
 
