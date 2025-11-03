@@ -167,6 +167,7 @@ echo "Configuración de MariaDB y de la base de datos completado."
 **Navegador mostrando la aplicación operativa vía port forwarding.**
 ![Captura Aplicación web](/src/Captura_pantalla.png)
 **Screen cast**
+
 ![Video de demostración](src/Video.mp4)
 
 
