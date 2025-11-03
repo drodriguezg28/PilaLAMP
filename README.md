@@ -165,9 +165,9 @@ Este script realiza:
 
 ## Capturas de pantalla
 
-*Máquina Apache corriendo servidor web y PHP.*
-*Máquina MySQL con servicio MariaDB activo.*
-*Navegador mostrando la aplicación operativa vía port forwarding.*
+**Máquina Apache corriendo servidor web y PHP.**
+**Máquina MySQL con servicio MariaDB activo.**
+**Navegador mostrando la aplicación operativa vía port forwarding.**
 
 ---
 
